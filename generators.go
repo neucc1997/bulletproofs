@@ -153,21 +153,21 @@ func EncodeFieldElementToCurve(t *big.Int) *Point {
 	alpha.Mul(alpha, x1)
 	alpha.Add(alpha, curve.Params().B)
 	alpha.Mod(alpha, curve.P)
-	y1 := ModSqrtFast(alpha)
+	y1 := ModSqrtOrig(alpha)
 	alphaQuadraticResidue := IsQuadraticResidue(alpha)
 
 	beta := new(big.Int).Mul(x2, x2)
 	beta.Mul(beta, x2)
 	beta.Add(beta, curve.Params().B)
 	beta.Mod(beta, curve.P)
-	y2 := ModSqrtFast(beta)
+	y2 := ModSqrtOrig(beta)
 	betaQuadraticResidue := IsQuadraticResidue(beta)
 
 	gamma := new(big.Int).Mul(x3, x3)
 	gamma.Mul(gamma, x3)
 	gamma.Add(gamma, curve.Params().B)
 	gamma.Mod(gamma, curve.P)
-	y3 := ModSqrtFast(gamma)
+	y3 := ModSqrtOrig(gamma)
 
 	var x, y *big.Int
 	if !alphaQuadraticResidue && betaQuadraticResidue {
