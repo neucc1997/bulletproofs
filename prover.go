@@ -64,7 +64,7 @@ func rightP(s []*Point) []*Point {
 }
 
 // commit computes the Pedersen commitment γH + vG.
-func commit(gamma *big.Int, h *Point, v *big.Int, g *Point) *Point {
+func Commit(gamma *big.Int, h *Point, v *big.Int, g *Point) *Point {
 	return SumPoints(ScalarMulPoint(h, gamma), ScalarMulPoint(g, v))
 }
 
@@ -162,8 +162,8 @@ func proverCommitToT(n int, z, zz, tau1, tau2 *big.Int, aL, aR, sL, sR, Y,
 	t2 := Sum(tMinusOne, Neg(t0), t1)
 
 	// Create the Pedersen commitments to the coefficients t_1, t_2.
-	T1 := commit(tau1, h, t1, g) // T1 = t_1 * G + tau_1 * H
-	T2 := commit(tau2, h, t2, g) // T2 = t_2 * G + tau_2 * H
+	T1 := Commit(tau1, h, t1, g) // T1 = t_1 * G + tau_1 * H
+	T2 := Commit(tau2, h, t2, g) // T2 = t_2 * G + tau_2 * H
 
 	return T1, T2, t0, t1, t2
 }
@@ -714,7 +714,7 @@ func rangeProofVerify(n int, V *Point, proof BulletProof, g, h *Point, G,
 		ScalarMulPoint(proof.T2, Square(x)))
 
 	// Check that the prover constructed the inner product honestly.
-	if !commit(Neg(proof.negTaux), h, proof.tHat, g).Equals(rhs65) {
+	if !Commit(Neg(proof.negTaux), h, proof.tHat, g).Equals(rhs65) {
 		return false
 	}
 
