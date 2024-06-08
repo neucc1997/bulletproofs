@@ -175,7 +175,7 @@ func BenchmarkModSqrt(b *testing.B) {
 func BenchmarkModSqrtFast(b *testing.B) {
 	var r *big.Int
 	for n := 0; n < b.N; n++ {
-		r = ModSqrtFast(number)
+		r = ModSqrtOrig(number)
 	}
 	result = r
 }
