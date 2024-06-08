@@ -119,7 +119,7 @@ func TestRangeProofVerifySmallRange(t *testing.T) {
 	prover := NewProver(4)
 
 	// V = γH + vG.
-	V := commit(gamma, prover.BlindingGenerator, v, prover.ValueGenerator)
+	V := Commit(gamma, prover.BlindingGenerator, v, prover.ValueGenerator)
 
 	proof, err := prover.CreateRangeProof(V, v, gamma, [32]byte{}, [16]byte{})
 	if err != nil {
@@ -140,7 +140,7 @@ func TestRangeProofVerifySmallNumber(t *testing.T) {
 	prover := NewProver(64)
 
 	// V = γH + vG.
-	V := commit(gamma, prover.BlindingGenerator, v, prover.ValueGenerator)
+	V := Commit(gamma, prover.BlindingGenerator, v, prover.ValueGenerator)
 
 	proof, err := prover.CreateRangeProof(V, v, gamma, [32]byte{}, [16]byte{})
 	if err != nil {
