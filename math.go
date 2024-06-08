@@ -94,11 +94,11 @@ func ModSqrtOrig(x *big.Int) *big.Int {
 	return new(big.Int).ModSqrt(x, curve.Params().P)
 }
 
-// ModSqrtFast returns a value v such that v*v = x mod P. This is about twice as
-// fast as ModSqrtOrig. See: https://bitcointalk.org/index.php?topic=162805.msg1712294#msg1712294
-func ModSqrtFast(x *big.Int) *big.Int {
-	return new(big.Int).Exp(x, curve.QPlus1Div4(), curve.Params().P)
-}
+// // ModSqrtFast returns a value v such that v*v = x mod P. This is about twice as
+// // fast as ModSqrtOrig. See: https://bitcointalk.org/index.php?topic=162805.msg1712294#msg1712294
+// func ModSqrtFast(x *big.Int) *big.Int {
+// 	return new(big.Int).Exp(x, curve.QPlus1Div4(), curve.Params().P)
+// }
 
 // IsQuadraticResidue returns true if there exists some x such that
 // x*x = y mod P.
