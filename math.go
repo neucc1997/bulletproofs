@@ -45,7 +45,7 @@ func (p *Point) Read(r io.Reader) error {
 	x3.Add(x3, curve.Params().B)
 
 	// y = ±sqrt(x³ + 7).
-	y := ModSqrtFast(x3)
+	y := ModSqrtOrig(x3)
 
 	// Pick which y from the sign encoded in the first byte.
 	if (sign & 1) != 0 {
@@ -149,7 +149,7 @@ func DeserializePoints(buf []byte, num uint) ([]*Point, error) {
 		x3.Add(x3, curve.Params().B)
 
 		// y = ±sqrt(x³ + 7).
-		y := ModSqrtFast(x3)
+		y := ModSqrtOrig(x3)
 
 		// Pick which y from the bit vector.
 		if isNonResidue[i/8]&(1<<(i%8)) != 0 {
